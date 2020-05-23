@@ -4,7 +4,7 @@ const User = require('../models/user');
 const mongoose = require('mongoose');
 const auth = require('../middleware/auth');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body);
@@ -131,17 +131,17 @@ const upload = multer({
 });
 
 // there are two middlewares
-router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
-    const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250}).png().toBuffer();
-    req.user.avatar = buffer;
-    await req.user.save();
-    res.send('aaaa');
-}, (error, req, res, next) => {
-    // this needs to have this call signature error, req, res, next
-    // this way express know this function is set up to handle any uncaught errors
-
-    res.status(400).send({ error: error.message });
-});
+// router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
+//     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250}).png().toBuffer();
+//     req.user.avatar = buffer;
+//     await req.user.save();
+//     res.send('aaaa');
+// }, (error, req, res, next) => {
+//     // this needs to have this call signature error, req, res, next
+//     // this way express know this function is set up to handle any uncaught errors
+//
+//     res.status(400).send({ error: error.message });
+// });
 
 router.delete('/users/me/avatar', auth, async (req, res) => {
     req.user.avatar = undefined;
