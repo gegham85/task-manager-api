@@ -23,3 +23,8 @@
 ```
 > heroku config
 ```
+
+4. deploy to Heroku
+```
+> git push heroku master
+```
