@@ -71,6 +71,7 @@ userSchema.pre('save', async function (next) {
 
 // https://stackoverflow.com/questions/29664499/mongoose-static-methods-vs-instance-methods
 // instance methods: methods are defined on the document (instance)
+// in other words it is exposed on each document instance!
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
     const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
