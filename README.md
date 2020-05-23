@@ -9,7 +9,17 @@
 
 1. Create Heroku App
 ```
-Heroku create {app-name}
+> heroku create {app-name}
 ```
 
-2.
+2. Set and remove Heroku environment variables
+```
+> heroku config:set key=value
+
+> heroku config:unset key=value
+```
+
+3. Display heroku environment variables
+```
+> heroku config
+```
